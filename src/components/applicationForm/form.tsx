@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -5,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormControlsProvider } from "./hooks/useForm";
 import { Form } from "../ui/form";
 import FormHeader from "./formHeader";
+import FormFooter from "./formFooter";
+import RenderComponent from "./renderComponent";
 const steps = [
   {
     id: "1",
@@ -80,8 +83,6 @@ const ApplicationForm = () => {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
   }
 
@@ -90,7 +91,8 @@ const ApplicationForm = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormHeader steps={steps} />
-          <button type="submit">Submit</button>
+          <RenderComponent steps={steps} />
+          <FormFooter />
         </form>
       </Form>
     </FormControlsProvider>

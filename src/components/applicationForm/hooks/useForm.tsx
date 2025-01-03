@@ -7,10 +7,12 @@ interface FormControlsContextProps {
   delta: number;
   hasNextPage: boolean;
   hasPreviousPage: boolean;
+  isFinalPage: boolean;
   handleNext: () => void;
   handleBack: () => void;
   setCurrentPageIndex: (index: number) => void;
   setHistoricPageIndex: (index: number) => void;
+  setPage: (index: number) => void;
 }
 
 const FormControlsContext = createContext<FormControlsContextProps | undefined>(undefined);
@@ -38,8 +40,17 @@ export const FormControlsProvider: React.FC<FormControlsProviderProps> = ({ step
     setHistoricPageIndex(currentPageIndex);
   };
 
+  const setPage = (index: number) => {
+    if(index === currentPageIndex) return;
+    if(index > currentPageIndex + 1) return;
+
+    setCurrentPageIndex(index);
+    setHistoricPageIndex(currentPageIndex);
+  }
+
   const hasNextPage = currentPageIndex < steps.length - 1;
   const hasPreviousPage = currentPageIndex > 0;
+  const isFinalPage = currentPageIndex === steps.length - 1;
 
   return (
     <FormControlsContext.Provider
@@ -53,6 +64,8 @@ export const FormControlsProvider: React.FC<FormControlsProviderProps> = ({ step
         handleBack,
         setCurrentPageIndex,
         setHistoricPageIndex,
+        setPage,
+        isFinalPage
       }}
     >
       {children}
