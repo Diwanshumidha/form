@@ -15,7 +15,7 @@ const FormHeader = ({ steps }: { steps: Step[] }) => {
   } = useFormContext<FormSchemaType>();
 
   return (
-    <div className="flex justify-between px-7  gap-6">
+    <div className="flex justify-between px-7  gap-3">
       {steps.map((step, idx) => {
         const isEnabled =
           idx > currentPageIndex + 1 || idx === currentPageIndex; // Only Next one button and all prev buttons are enabled
@@ -36,14 +36,14 @@ const FormHeader = ({ steps }: { steps: Step[] }) => {
               setPage(idx);
             }}
             className={cn(
-              "w-full flex flex-col  disabled:cursor-default text-left gap-2 ",
+              "w-full flex flex-col  justify-between disabled:cursor-default text-left gap-4 ",
               idx <= currentPageIndex && "text-purple-600",
               idx > currentPageIndex && "opacity-50",
               hasError && "text-red-600"
             )}
             key={step.id}
           >
-            <p>
+            <p className="text-sm ">
               {idx + 1}. {step.title}
             </p>
 
