@@ -1,98 +1,109 @@
-"use client"
+"use client";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormControlsProvider } from "./hooks/useForm";
 import { Form } from "../ui/form";
 import FormHeader from "./formHeader";
 import FormFooter from "./formFooter";
 import RenderComponent from "./renderComponent";
+import PersonalInformation from "./steps/personalInformation";
+import { formSchema, FormSchemaType } from "./schema";
+
+export type Step = {
+  id: string;
+  title: string;
+  description?: string;
+  component: () => React.JSX.Element;
+  inputs: (keyof FormSchemaType)[];
+};
+
 const steps = [
   {
     id: "1",
     title: "Personal Information",
-    component: <p>Personal Information</p>,
+    component: PersonalInformation,
+    description:
+      "Enter your personal information. This information will be used to contact you.",
     inputs: ["firstName", "lastName", "email", "phone"],
   },
   {
     id: "2",
     title: "Address",
-    component: <p>Address</p>,
+    description: "Enter your address information.",
+    component: PersonalInformation,
     inputs: ["country", "state", "city", "address", "zip"],
   },
   {
     id: "3",
     title: "Work Experience",
-    component: <p>Personal Information</p>,
+    description:
+      "Enter your work experience. This information will be used to evaluate your application.",
+    component: PersonalInformation,
     inputs: ["jobs"],
   },
   {
     id: "4",
     title: "Skills",
-    component: <p>Personal Information</p>,
+    description:
+      "Enter your skills. Skills must be related to the job you are applying for.",
+    component: PersonalInformation,
     inputs: ["skills"],
   },
   {
     id: "5",
     title: "Preferences",
-    component: <p>Personal Information</p>,
-    inputs: ["jobLocation", "expectedSalary"],
+    description:
+      "Enter your job preferences. This information will be used to match you with the right job and give you right position.",
+    component: PersonalInformation,
+    inputs: ["jobs", "expectedSalary"],
   },
   {
     id: "6",
     title: "Social Links",
-    component: <p>Personal Information</p>,
+    description:
+      "Enter your social links. This information helps us to know more about you.",
+    component: PersonalInformation,
     inputs: ["linkedin", "github", "portfolio"],
   },
-];
-
-const jobSchema = z.object({
-  title: z.string(),
-  company: z.string(),
-  from: z.date(),
-  to: z.date(),
-  description: z.string(),
-});
-// TODO: Add a file upload schema
-const formSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string().email(),
-  phone: z.string(),
-  country: z.string(),
-  state: z.string(),
-  city: z.string(),
-  address: z.string(),
-  zip: z.string(),
-  jobs: z.array(jobSchema),
-  skills: z.array(
-    z.object({
-      name: z.string(),
-      level: z.enum(["beginner", "intermediate", "advanced"]),
-    })
-  ),
-});
-
-export type Step = (typeof steps)[number];
+] satisfies Step[];
 
 const ApplicationForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
+    defaultValues:{
+        firstName:"",
+        lastName:"",
+        email:"",
+        phone:"",
+        country:"",
+        state:"",
+        city:"",
+        address:"",
+        zip:"",
+        jobs:[],
+        skills:[],
+        expectedSalary: 300,
+        linkedin:"",
+        github:"",
+        portfolio:""
+    }
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: FormSchemaType) {
     console.log(values);
   }
 
   return (
     <FormControlsProvider steps={steps}>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 h-svh py-20 flex flex-col justify-between"
+        >
           <FormHeader steps={steps} />
           <RenderComponent steps={steps} />
-          <FormFooter />
+          <FormFooter steps={steps} />
         </form>
       </Form>
     </FormControlsProvider>
