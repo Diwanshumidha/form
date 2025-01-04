@@ -10,6 +10,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { PhoneInput } from "@/components/ui/phone-input";
 
 const PersonalInformation = () => {
   const { control } = useFormContext<FormSchemaType>();
@@ -55,45 +56,40 @@ const PersonalInformation = () => {
         )}
       />
 
-        <FormField
-            control={control}
-            name="email"
-            render={({ field }) => (
-            <FormItem className="col-span-2">
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                <Input
-                    type="email"
-                    placeholder="Enter Your Email"
-                    id="email"
-                    {...field}
-                />
-                </FormControl>
-                <FormDescription>This is your public display name.</FormDescription>
-                <FormMessage />
-            </FormItem>
-            )}
-        />
+      <FormField
+        control={control}
+        name="email"
+        render={({ field }) => (
+          <FormItem className="col-span-2">
+            <FormLabel>Email</FormLabel>
+            <FormControl>
+              <Input
+                type="email"
+                placeholder="Enter Your Email"
+                id="email"
+                {...field}
+              />
+            </FormControl>
+            <FormDescription>This is your public display name.</FormDescription>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
 
-        <FormField
-            control={control}
-            name="phone"
-            render={({ field }) => (
-            <FormItem className="col-span-2">
-                <FormLabel>Phone</FormLabel>
-                <FormControl>
-                <Input
-                    type="tel"
-                    placeholder="Enter Your Phone Number"
-                    id="phone"
-                    {...field}
-                />
-                </FormControl>
-                <FormDescription>This is your public display name.</FormDescription>
-                <FormMessage />
-            </FormItem>
-            )}
-        />
+      <FormField
+        control={control}
+        name="phone"
+        render={({ field }) => (
+          <FormItem className="col-span-2">
+            <FormLabel>Phone</FormLabel>
+            <FormControl>
+              <PhoneInput international id="phone" defaultCountry="IN" {...field} />
+            </FormControl>
+            <FormDescription>This is your public display name.</FormDescription>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
     </div>
   );
 };
