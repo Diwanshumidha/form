@@ -9,6 +9,7 @@ import FormFooter from "./formFooter";
 import RenderComponent from "./renderComponent";
 import PersonalInformation from "./steps/personalInformation";
 import { formSchema, FormSchemaType } from "./schema";
+import AddressInformation from "./steps/addressInformation";
 
 export type Step = {
   id: string;
@@ -31,8 +32,8 @@ const steps = [
     id: "2",
     title: "Address",
     description: "Enter your address information.",
-    component: PersonalInformation,
-    inputs: ["country", "state", "city", "address", "zip"],
+    component: AddressInformation,
+    inputs: ["country", "state", "city", "address", "zip", "timezone"],
   },
   {
     id: "3",

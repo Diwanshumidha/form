@@ -45,6 +45,7 @@ export const formSchema = z.object({
   city: z.string(),
   address: z.string(),
   zip: z.string(),
+  timezone: z.string(),
   jobs: z.array(jobSchema),
   expectedSalary: z.number(),
   linkedin: z.string().url(),
