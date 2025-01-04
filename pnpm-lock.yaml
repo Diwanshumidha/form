@@ -84,6 +84,12 @@ importers:
       '@eslint/eslintrc':
         specifier: ^3
         version: 3.2.0
+      '@html-eslint/eslint-plugin':
+        specifier: ^0.32.0
+        version: 0.32.0
+      '@html-eslint/parser':
+        specifier: ^0.32.0
+        version: 0.32.0
       '@types/node':
         specifier: ^20
         version: 20.17.11
@@ -175,6 +181,18 @@ packages:
     resolution: {integrity: sha512-ud2HqmGBM0P0IABqoskKWI6PEf6ZDDBZkFqe2Vnl+mTHCEHzr3ISjjZyCwTjC/qpL25JC9aIDkloQejvMeq0ug==}
     peerDependencies:
       react-hook-form: ^7.0.0
+
+  '@html-eslint/eslint-plugin@0.32.0':
+    resolution: {integrity: sha512-pHY0kGlSUn9G3qsEB11c/nK0tfHTeKTU2Su5dH+muNv9lr5K7O6Mo1dzTr96PNzTBXsDIkRpZ2k1TdNmgDR7YA==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  '@html-eslint/parser@0.32.0':
+    resolution: {integrity: sha512-XSrc3rlIakRlJmFO3EpcVAiwJMfTFvjRZrpFr2jhX1E/Zjd/jPuYbKKXaY6ZLpeRQDtexFiKU+r8pa9DT2pd0A==}
+    engines: {node: '>=8.10.0'}
+
+  '@html-eslint/template-parser@0.32.0':
+    resolution: {integrity: sha512-+p0EdxmSC3CERw3uHYo9aMw4y6+Rk8YeNzhJP5ewfXpB6qZEeB3XD/6vhiK0NheOh1meGdiKvbYLvaMULRIr5A==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1241,6 +1259,9 @@ packages:
   es-errors@1.3.0:
     resolution: {integrity: sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==}
     engines: {node: '>= 0.4'}
+
+  es-html-parser@1.0.0-alpha.4:
+    resolution: {integrity: sha512-5KUgd64goEPG1ZwP3rf/D+uAbdjyuNon0YY9u1yzR2NkFwa1UwxpsCQkzalAOlQaXAVtP32LGYRW4IAKAwo/sg==}
 
   es-iterator-helpers@1.2.1:
     resolution: {integrity: sha512-uDn+FE1yrDzyC0pCo961B2IHbdM8y/ACZsKD4dG6WqrjV53BADjwa7D+1aom2rsNVfLyDgU/eigvlJGJ08OQ4w==}
@@ -2475,6 +2496,18 @@ snapshots:
     dependencies:
       react-hook-form: 7.54.2(react@19.0.0)
 
+  '@html-eslint/eslint-plugin@0.32.0':
+    dependencies:
+      '@html-eslint/template-parser': 0.32.0
+
+  '@html-eslint/parser@0.32.0':
+    dependencies:
+      es-html-parser: 1.0.0-alpha.4
+
+  '@html-eslint/template-parser@0.32.0':
+    dependencies:
+      es-html-parser: 1.0.0-alpha.4
+
   '@humanfs/core@0.19.1': {}
 
   '@humanfs/node@0.16.6':
@@ -3543,6 +3576,8 @@ snapshots:
   es-define-property@1.0.1: {}
 
   es-errors@1.3.0: {}
+
+  es-html-parser@1.0.0-alpha.4: {}
 
   es-iterator-helpers@1.2.1:
     dependencies:

@@ -19,7 +19,7 @@ const FormFooter = ({ steps }: { steps: Step[] }) => {
   if (isFinalPage) {
     return (
       <div className="w-full flex justify-between px-7">
-        <Button onClick={handleBack} disabled={!hasPreviousPage}>
+        <Button type="button" onClick={handleBack} disabled={!hasPreviousPage}>
           Back
         </Button>
         <Button type="submit">Submit</Button>

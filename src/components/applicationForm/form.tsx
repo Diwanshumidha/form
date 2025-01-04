@@ -10,6 +10,7 @@ import RenderComponent from "./renderComponent";
 import PersonalInformation from "./steps/personalInformation";
 import { formSchema, FormSchemaType } from "./schema";
 import AddressInformation from "./steps/addressInformation";
+import WorkExperience from "./steps/workExperience";
 
 export type Step = {
   id: string;
@@ -40,7 +41,7 @@ const steps = [
     title: "Work Experience",
     description:
       "Enter your work experience. This information will be used to evaluate your application.",
-    component: PersonalInformation,
+    component: WorkExperience,
     inputs: ["jobs"],
   },
   {
@@ -57,7 +58,7 @@ const steps = [
     description:
       "Enter your job preferences. This information will be used to match you with the right job and give you right position.",
     component: PersonalInformation,
-    inputs: ["jobs", "expectedSalary"],
+    inputs: ["expectedSalary"],
   },
   {
     id: "6",
@@ -73,15 +74,15 @@ const ApplicationForm = () => {
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues:{
-        firstName:"",
-        lastName:"",
-        email:"",
-        phone:"",
-        country:"",
-        state:"",
-        city:"",
-        address:"",
-        zip:"",
+        firstName:"Diwanshu",
+        lastName:"Midha",
+        email:"saidiwanhu@gmail.com",
+        phone:"+917404729838",
+        country:"in",
+        state:"haryana",
+        city:"ambala",
+        address:"sadasd dasd asd asd asd asd asd as dasd",
+        zip:"145552",
         jobs:[],
         skills:[],
         expectedSalary: 300,
