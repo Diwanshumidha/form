@@ -55,7 +55,7 @@ export const formSchema = z.object({
     z.object({
       name: z.string(),
       level: z.enum(["beginner", "intermediate", "advanced"]),
-    })
+    }),
   ),
 });
 

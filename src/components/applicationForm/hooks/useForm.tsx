@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import { Step } from "../form";
+import type React from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
+import type { Step } from "../form";
 
 interface FormControlsContextProps {
   currentPageIndex: number;
@@ -15,14 +16,19 @@ interface FormControlsContextProps {
   setPage: (index: number) => void;
 }
 
-const FormControlsContext = createContext<FormControlsContextProps | undefined>(undefined);
+const FormControlsContext = createContext<FormControlsContextProps | undefined>(
+  undefined,
+);
 
 interface FormControlsProviderProps {
   steps: Step[];
   children: ReactNode;
 }
 
-export const FormControlsProvider: React.FC<FormControlsProviderProps> = ({ steps, children }) => {
+export const FormControlsProvider: React.FC<FormControlsProviderProps> = ({
+  steps,
+  children,
+}) => {
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0);
   const [historicPageIndex, setHistoricPageIndex] = useState<number>(0);
 
@@ -41,12 +47,12 @@ export const FormControlsProvider: React.FC<FormControlsProviderProps> = ({ step
   };
 
   const setPage = (index: number) => {
-    if(index === currentPageIndex) return;
-    if(index > currentPageIndex + 1) return;
+    if (index === currentPageIndex) return;
+    if (index > currentPageIndex + 1) return;
 
     setCurrentPageIndex(index);
     setHistoricPageIndex(currentPageIndex);
-  }
+  };
 
   const hasNextPage = currentPageIndex < steps.length - 1;
   const hasPreviousPage = currentPageIndex > 0;
@@ -65,7 +71,7 @@ export const FormControlsProvider: React.FC<FormControlsProviderProps> = ({ step
         setCurrentPageIndex,
         setHistoricPageIndex,
         setPage,
-        isFinalPage
+        isFinalPage,
       }}
     >
       {children}
@@ -76,7 +82,9 @@ export const FormControlsProvider: React.FC<FormControlsProviderProps> = ({ step
 export const useFormControls = (): FormControlsContextProps => {
   const context = useContext(FormControlsContext);
   if (!context) {
-    throw new Error("useFormControls must be used within a FormControlsProvider");
+    throw new Error(
+      "useFormControls must be used within a FormControlsProvider",
+    );
   }
   return context;
 };

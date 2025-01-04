@@ -8,7 +8,7 @@ import {
 import { Input } from "@/components/ui/input";
 import React from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import { FormSchemaType } from "../schema";
+import type { FormSchemaType } from "../schema";
 import {
   Popover,
   PopoverContent,
@@ -23,7 +23,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 
 const WorkExperience = () => {
-  const { control, formState:{errors} } = useFormContext<FormSchemaType>();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext<FormSchemaType>();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -36,9 +39,8 @@ const WorkExperience = () => {
         <Job key={field.id} field={field} index={index} remove={remove} />
       ))}
       <p className="text-destructive">
-        {errors.jobs && errors.jobs.message}
+        {errors.jobs ? errors.jobs.message : null}
       </p>
-    
 
       <button
         onClick={() =>
@@ -148,7 +150,7 @@ const Job = ({
                         variant={"outline"}
                         className={cn(
                           " w-full pl-3 text-left font-normal border-neutral-700 bg-accent",
-                          !field.value && "text-muted-foreground"
+                          !field.value && "text-muted-foreground",
                         )}
                       >
                         {field.value ? (
@@ -193,7 +195,7 @@ const Job = ({
                         variant={"outline"}
                         className={cn(
                           "w-full pl-3 text-left font-normal border-neutral-700 bg-accent",
-                          !field.value && "text-muted-foreground"
+                          !field.value && "text-muted-foreground",
                         )}
                       >
                         {field.value ? (
@@ -213,7 +215,7 @@ const Job = ({
                       disabled={(date) =>
                         date.getTime() >
                           new Date().setFullYear(
-                            new Date().getFullYear() + 7
+                            new Date().getFullYear() + 7,
                           ) || date < new Date("1900-01-01")
                       }
                       initialFocus

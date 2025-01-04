@@ -1,10 +1,10 @@
 import React from "react";
 import { useFormControls } from "./hooks/useForm";
-import { Step } from "./form";
-import {  motion } from "framer-motion";
+import type { Step } from "./form";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useFormContext } from "react-hook-form";
-import { FormSchemaType } from "./schema";
+import type { FormSchemaType } from "./schema";
 import { toast } from "sonner";
 
 const FormHeader = ({ steps }: { steps: Step[] }) => {
@@ -27,7 +27,9 @@ const FormHeader = ({ steps }: { steps: Step[] }) => {
             type="button"
             disabled={isEnabled}
             onClick={async () => {
-              const res = await trigger(steps[currentPageIndex].inputs, {shouldFocus: true});
+              const res = await trigger(steps[currentPageIndex].inputs, {
+                shouldFocus: true,
+              });
               if (!res) {
                 toast.error("Please fill the required fields");
                 return;
@@ -39,7 +41,7 @@ const FormHeader = ({ steps }: { steps: Step[] }) => {
               "w-full flex flex-col  justify-between disabled:cursor-default text-left gap-4 ",
               idx <= currentPageIndex && "text-purple-600",
               idx > currentPageIndex && "opacity-50",
-              hasError && "text-red-600"
+              hasError && "text-red-600",
             )}
             key={step.id}
           >
@@ -60,13 +62,13 @@ const FormHeader = ({ steps }: { steps: Step[] }) => {
                     idx === currentPageIndex
                       ? "100%"
                       : idx < currentPageIndex
-                      ? "100%"
-                      : "0%"
+                        ? "100%"
+                        : "0%"
                   }`,
                 }}
                 className={cn(
                   "h-full rounded-sm",
-                  hasError ? "bg-red-600" : "bg-purple-600"
+                  hasError ? "bg-red-600" : "bg-purple-600",
                 )}
               />
             </motion.div>

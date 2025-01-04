@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import { FormSchemaType } from "../schema";
+import type { FormSchemaType } from "../schema";
 import {
   FormControl,
   FormDescription,
@@ -83,7 +83,12 @@ const PersonalInformation = () => {
           <FormItem className="col-span-2">
             <FormLabel>Phone</FormLabel>
             <FormControl>
-              <PhoneInput international id="phone" defaultCountry="IN" {...field} />
+              <PhoneInput
+                international
+                id="phone"
+                defaultCountry="IN"
+                {...field}
+              />
             </FormControl>
             <FormDescription>This is your public display name.</FormDescription>
             <FormMessage />

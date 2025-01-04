@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import type React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormControlsProvider } from "./hooks/useForm";
@@ -8,7 +8,7 @@ import FormHeader from "./formHeader";
 import FormFooter from "./formFooter";
 import RenderComponent from "./renderComponent";
 import PersonalInformation from "./steps/personalInformation";
-import { formSchema, FormSchemaType } from "./schema";
+import { formSchema, type FormSchemaType } from "./schema";
 import AddressInformation from "./steps/addressInformation";
 import WorkExperience from "./steps/workExperience";
 
@@ -73,23 +73,23 @@ const steps = [
 const ApplicationForm = () => {
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
-    defaultValues:{
-        firstName:"Diwanshu",
-        lastName:"Midha",
-        email:"saidiwanhu@gmail.com",
-        phone:"+917404729838",
-        country:"in",
-        state:"haryana",
-        city:"ambala",
-        address:"sadasd dasd asd asd asd asd asd as dasd",
-        zip:"145552",
-        jobs:[],
-        skills:[],
-        expectedSalary: 300,
-        linkedin:"",
-        github:"",
-        portfolio:""
-    }
+    defaultValues: {
+      firstName: "Diwanshu",
+      lastName: "Midha",
+      email: "saidiwanhu@gmail.com",
+      phone: "+917404729838",
+      country: "in",
+      state: "haryana",
+      city: "ambala",
+      address: "sadasd dasd asd asd asd asd asd as dasd",
+      zip: "145552",
+      jobs: [],
+      skills: [],
+      expectedSalary: 300,
+      linkedin: "",
+      github: "",
+      portfolio: "",
+    },
   });
 
   function onSubmit(values: FormSchemaType) {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormControls } from "./hooks/useForm";
-import { Step } from "./form";
+import type { Step } from "./form";
 import { motion } from "framer-motion";
 
 const RenderComponent = ({ steps }: { steps: Step[] }) => {

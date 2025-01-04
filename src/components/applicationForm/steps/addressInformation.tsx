@@ -1,11 +1,11 @@
 import { Loader2, MapPin } from "lucide-react";
 import React from "react";
 import {
-  ControllerRenderProps,
+  type ControllerRenderProps,
   useFormContext,
   useWatch,
 } from "react-hook-form";
-import { FormSchemaType } from "../schema";
+import type { FormSchemaType } from "../schema";
 import {
   FormControl,
   FormField,
@@ -41,7 +41,7 @@ const AddressInformation = () => {
       // Get user's location
       const position = await new Promise<GeolocationPosition>(
         (resolve, reject) =>
-          navigator.geolocation.getCurrentPosition(resolve, reject)
+          navigator.geolocation.getCurrentPosition(resolve, reject),
       );
 
       const { latitude, longitude } = position.coords;
@@ -68,7 +68,7 @@ const AddressInformation = () => {
 
   const onCountryChange = (
     value: string,
-    field: ControllerRenderProps<FormSchemaType, "country">
+    field: ControllerRenderProps<FormSchemaType, "country">,
   ) => {
     console.log(value);
     field.onChange(value);
@@ -78,7 +78,7 @@ const AddressInformation = () => {
 
   const onStateChange = (
     value: string,
-    field: ControllerRenderProps<FormSchemaType, "state">
+    field: ControllerRenderProps<FormSchemaType, "state">,
   ) => {
     console.log({ value });
     field.onChange(value);
@@ -103,7 +103,13 @@ const AddressInformation = () => {
                   {...field}
                 />
               </FormControl>
-              <Button type="button" onClick={handleAutofill} disabled={isAutofillActive} aria-busy={isAutofillActive} aria-label="Autofill address" >
+              <Button
+                type="button"
+                onClick={handleAutofill}
+                disabled={isAutofillActive}
+                aria-busy={isAutofillActive}
+                aria-label="Autofill address"
+              >
                 {isAutofillActive ? (
                   <Loader2 className="animate-spin h-4 w-4" />
                 ) : (

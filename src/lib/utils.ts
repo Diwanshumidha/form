@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export const isValidEmail = async (email: string) => {
   try {
     const isDisposableResponse = await fetch(
-      `https://open.kickbox.com/v1/disposable/${email}`
+      `https://open.kickbox.com/v1/disposable/${email}`,
     );
     const isDisposable = await isDisposableResponse.json();
     if (isDisposable?.disposable) {

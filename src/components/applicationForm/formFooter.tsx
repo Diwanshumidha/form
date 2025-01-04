@@ -2,7 +2,7 @@ import React from "react";
 import { useFormControls } from "./hooks/useForm";
 import { Button } from "../ui/button";
 import { useFormContext } from "react-hook-form";
-import { Step } from "./form";
+import type { Step } from "./form";
 
 const FormFooter = ({ steps }: { steps: Step[] }) => {
   const {
@@ -34,7 +34,9 @@ const FormFooter = ({ steps }: { steps: Step[] }) => {
       </Button>
       <Button
         onClick={async () => {
-          const res = await trigger(steps[currentPageIndex].inputs, {shouldFocus: true});
+          const res = await trigger(steps[currentPageIndex].inputs, {
+            shouldFocus: true,
+          });
           if (!res) {
             return;
           }
