@@ -49,7 +49,7 @@ const FormHeader = ({ steps }: { steps: Step[] }) => {
               {idx + 1}. {step.title}
             </p>
 
-            <motion.div className="w-full h-3 bg-purple-600/50 relative rounded-sm">
+            <motion.div className={cn("w-full h-3  relative rounded-sm", hasError ? "bg-red-600/50" : "bg-purple-600/50")}>
               <motion.div
                 initial={{ width: "0%" }}
                 transition={{
