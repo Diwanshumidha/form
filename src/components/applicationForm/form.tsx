@@ -11,6 +11,8 @@ import PersonalInformation from "./steps/personalInformation";
 import { formSchema, type FormSchemaType } from "./schema";
 import AddressInformation from "./steps/addressInformation";
 import WorkExperience from "./steps/workExperience";
+import { z } from "zod";
+import SocialLinks from "./steps/socialLinks";
 
 export type Step = {
   id: string;
@@ -46,26 +48,10 @@ const steps = [
   },
   {
     id: "4",
-    title: "Skills",
-    description:
-      "Enter your skills. Skills must be related to the job you are applying for.",
-    component: PersonalInformation,
-    inputs: ["skills"],
-  },
-  {
-    id: "5",
-    title: "Preferences",
-    description:
-      "Enter your job preferences. This information will be used to match you with the right job and give you right position.",
-    component: PersonalInformation,
-    inputs: ["expectedSalary"],
-  },
-  {
-    id: "6",
     title: "Social Links",
     description:
       "Enter your social links. This information helps us to know more about you.",
-    component: PersonalInformation,
+    component: SocialLinks,
     inputs: ["linkedin", "github", "portfolio"],
   },
 ] satisfies Step[];
@@ -83,12 +69,11 @@ const ApplicationForm = () => {
       city: "ambala",
       address: "sadasd dasd asd asd asd asd asd as dasd",
       zip: "145552",
-      jobs: [],
-      skills: [],
-      expectedSalary: 300,
+      jobs: [{company:"", title:"", from:new Date(), to:new Date(), description:""}],
       linkedin: "",
       github: "",
       portfolio: "",
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     },
   });
 
