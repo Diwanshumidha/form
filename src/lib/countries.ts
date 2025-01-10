@@ -6,6 +6,7 @@ type Country = {
   states: { name: string; cities: string[] }[];
 };
 
+
 class CountryDataLoader {
   private countriesMap: Map<string, Country>;
   private static _instance: CountryDataLoader;
@@ -29,6 +30,8 @@ class CountryDataLoader {
       this.countriesMap.set(lowerKey, countriesData[countryKey]);
     }
   }
+
+
 
   public countryExists(countryCode: string): boolean {
     return this.countriesMap.has(countryCode?.toLowerCase());

@@ -82,6 +82,8 @@ export const getFileType = (file: File) => {
   );
 };
 
+
+
 const mimeTypeMap = {
   "image/png": [".png"],
   "image/jpeg": [".jpg", ".jpeg"],

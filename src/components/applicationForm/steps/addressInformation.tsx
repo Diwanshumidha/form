@@ -55,9 +55,7 @@ const AddressInformation = () => {
 
       setValue("address", address?.city || "");
       setValue("country", address?.country || "");
-      // setValue("state", address?.state || "");
       setValue("zip", address?.zip || "");
-      // setValue("city", address?.city || "");
       setValue("timezone", timezone);
     } catch (error) {
       console.error("Autofill failed:", error);
