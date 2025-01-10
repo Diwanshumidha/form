@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 const RenderComponent = ({ steps }: { steps: Step[] }) => {
   const { currentPageIndex, delta } = useFormControls();
+  
   const step = steps[currentPageIndex];
   const Comp = step.component;
   if (!Comp) return null;
@@ -17,6 +18,7 @@ const RenderComponent = ({ steps }: { steps: Step[] }) => {
       transition={{ duration: 0.4, ease: "easeInOut", type: "tween" }}
       className="px-7 flex flex-col gap-y-4 flex-1"
     >
+
       <div>
         <h2 className="text-4xl font-bold tracking-tight leading-relaxed">
           {step.title}
@@ -24,6 +26,7 @@ const RenderComponent = ({ steps }: { steps: Step[] }) => {
         <p className="text-sm text-foreground/70">{step.description}</p>
       </div>
       {Comp && <Comp />}
+
     </motion.div>
   );
 };

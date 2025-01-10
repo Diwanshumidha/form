@@ -13,6 +13,7 @@ import AddressInformation from "./steps/addressInformation";
 import WorkExperience from "./steps/workExperience";
 import { z } from "zod";
 import SocialLinks from "./steps/socialLinks";
+import ResumeUploader from "./steps/resumeUploader";
 
 export type Step = {
   id: string;
@@ -54,6 +55,14 @@ const steps = [
     component: SocialLinks,
     inputs: ["linkedin", "github", "portfolio"],
   },
+  {
+    id: "5",
+    title: "Resume",
+    description:
+      "Upload your resume. This information helps us to know more about you.",
+    component: ResumeUploader,
+    inputs: ["resume"],
+  },
 ] satisfies Step[];
 
 const ApplicationForm = () => {
@@ -69,10 +78,10 @@ const ApplicationForm = () => {
       city: "ambala",
       address: "sadasd dasd asd asd asd asd asd as dasd",
       zip: "145552",
-      jobs: [{company:"", title:"", from:new Date(), to:new Date(), description:""}],
-      linkedin: "",
-      github: "",
-      portfolio: "",
+      jobs: [{company:"ssadasd", title:"sadasdasd", from:new Date(), to:new Date(), description:"sadasdasdasdasd"}],
+      linkedin: "https://www.linkedin.com/in/diwanshu-midha-b6b1b91a3/",
+      github: "https://github.com/Diwanshu-Midha",
+      portfolio: "https://www.linkedin.com/in/diwanshu-midha-b6b1b91a3/",
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     },
   });
@@ -89,7 +98,9 @@ const ApplicationForm = () => {
           className="space-y-8 h-svh py-20 flex flex-col justify-between"
         >
           <FormHeader steps={steps} />
+
           <RenderComponent steps={steps} />
+          
           <FormFooter steps={steps} />
         </form>
       </Form>

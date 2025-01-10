@@ -34,7 +34,6 @@ const FormHeader = ({ steps }: { steps: Step[] }) => {
                 toast.error("Please fill the required fields");
                 return;
               }
-
               setPage(idx);
             }}
             className={cn(
